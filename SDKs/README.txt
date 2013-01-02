@@ -1,0 +1,1 @@
+SDKs installed on home/ubuntu.
