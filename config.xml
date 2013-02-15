@@ -73,9 +73,6 @@
 passin=lispoadev
 PASSWORD=lispoadev</properties>
     </hudson.tasks.Ant>
-    <hudson.tasks.Shell>
-      <command>daemonize /home/ubuntu/appengine-java-sdk-1.7.1/bin/dev_appserver.sh --port=8888 --address=0.0.0.0 /var/lib/jenkins/workspace/n3phele/war</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers>
