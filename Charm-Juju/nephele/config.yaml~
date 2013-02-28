@@ -1,0 +1,14 @@
+options:
+  plugins:
+    type: string
+    default: ""
+    description: Space separated list of plugins to install
+  git:
+    type: string
+    default: ""
+    description: Site to Download the project.
+  job:
+    type: string
+    default: "n3phele"
+    description: Name of job
+  
