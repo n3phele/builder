@@ -1,0 +1,39 @@
+This charm builds an environment of continuous integration using Jenkins to build the n3phele.
+
+The charm automatically install Ant, Junit, openJDK, Unzip, Git, Jenkins and Jenkins CLI also clones the git repository builder where the dependencies appengine and gwt are, they are placed in / home / ubuntu. For Jenkins install the following plugins: ant, promoted-builds, mask-passwords, client-git, git, github, github-api, github-oauth, github-plugin-sqs.
+
+The builder that is cloned from the git repository contains a file called config.xml where is the settings to create a job. The Charm creates the job based on this .xml file.
+
+To install this charm the machine using the HP Cloud  must be of the type standard.medium, that should be added at the time of service deployment.
+
+Example:
+
+n3phele juju deploy -- constraints "instance-type = standard.medium"
+
+
+Additional configurations:
+
+The charm has some configurations that can be added as:
+
+
+add to jenkins plugins via the command:
+
+juju set n3phele plugins = "plugin name"
+
+
+change the repository you want to use the n3phele:
+
+juju set n3phele git = "git URL"
+
+* The url should be git :/ / ...
+
+
+Create a job with the selected repository via git seen above:
+
+juju set n3phele job = "job name"
+
+To access the service give the command:
+juju expose n3phele
+
+After that Jenkins will be accessible via http://public-adress:8080/
+

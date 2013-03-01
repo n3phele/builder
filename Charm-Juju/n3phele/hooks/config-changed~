@@ -30,17 +30,17 @@ sed -i '/projectUrl/d' builder/config.xml
 sed -i '8i\<projectUrl>'$GIT'</projectUrl>' builder/config.xml
 sed -i '/<url>/d' builder/config.xml
 sed -i '22i\<url>'$GIT'</url>' builder/config.xml
-sed -i '/<name>/d' builder/config.xml
-sed -i '20i\<name></name>' builder/config.xml
+sed -i '27d' builder/config.xml
 sed -i '27i\<name>master</name>' builder/config.xml
 sed -i '/<customWorkspace>/d' builder/config.xml
 sed -i '63i\<customWorkspace>/var/lib/jenkins/workspace/n3pheleCore</customWorkspace>' builder/config.xml
-sed -i '/<command>/d' builder/config.xml
-sed -i '66i\<command>echo -e &quot;\ntestRootUsername=root\ntestRootPassword=n3phelepoadev&quot; &gt;&gt; /var/lib/jenkins/workspace/n3pheleCore/n3phele/src/n3phele/resource/service.properties</command>' builder/config.xml
+sed -i '65d' builder/config.xml
+sed -i '65d' builder/config.xml
+sed -i '65d' builder/config.xml
 sed -i '/<targets>/d' builder/config.xml
-sed -i '71i\<targets>junit</targets>' builder/config.xml
+sed -i '66i\<targets>junit</targets>' builder/config.xml
 sed -i '/<buildFile>/d' builder/config.xml
-sed -i '73i\ <buildFile>/var/lib/jenkins/workspace/n3pheleCore/n3phele/build.xml</buildFile>' builder/config.xml
+sed -i '68i\ <buildFile>/var/lib/jenkins/workspace/n3pheleCore/n3phele/build.xml</buildFile>' builder/config.xml
 fi
 
 if [ $GIT == "git://github.com/n3phele/n3phele-core.git" ]; then
@@ -54,12 +54,13 @@ sed -i '20i\<name></name>' builder/config.xml
 sed -i '27i\<name>poadev</name>' builder/config.xml
 sed -i '/<customWorkspace>/d' builder/config.xml
 sed -i '63i\<customWorkspace>/var/lib/jenkins/workspace/n3phele</customWorkspace>' builder/config.xml
-sed -i '/<command>/d' builder/config.xml
-sed -i '66i\<command>echo -e &quot;\ntestRootUsername=root\ntestRootPassword=n3phelepoadev&quot; &gt;&gt; /var/lib/jenkins/workspace/n3phele/core-frontend/src/n3phele/resource/service.properties</command>' builder/config.xml
 sed -i '/<targets>/d' builder/config.xml
-sed -i '69i\<targets>tests</targets>' builder/config.xml
+sed -i '66i\<targets>tests</targets>' builder/config.xml
 sed -i '/<buildFile>/d' builder/config.xml
-sed -i '71i\ <buildFile>/var/lib/jenkins/workspace/n3phele/core-frontend/build.xml</buildFile>' builder/config.xml
+sed -i '68i\ <buildFile>/var/lib/jenkins/workspace/n3phele/core-frontend/build.xml</buildFile>' builder/config.xml
+sed -i '65i\<hudson.tasks.Shell>' builder/config.xml
+sed -i '66i\<command>echo -e &quot;\ntestRootUsername=root\ntestRootPassword=n3phelepoadev&quot; &gt;&gt; /var/lib/jenkins/workspace/n3phele/core-frontend/src/n3phele/resource/service.properties</command>' builder/config.xml
+sed -i '70i\</hudson.tasks.Shell>' builder/config.xml
 fi
 
 #home=`dirname $0` 
