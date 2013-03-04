@@ -12,9 +12,10 @@ To install this charm the machine using the HP Cloud  must be of the type standa
 Example:
 
 juju deploy n3phele -- constraints "instance-type = standard.medium"
----------------------------------------------------------------------------------------
+
 
 Additional configurations:
+---------------------------
 
 The charm has some configurations that can be added as:
 
@@ -34,9 +35,9 @@ juju set n3phele git = "git URL"
 Create a job with the selected repository via git seen above:
 
 juju set n3phele job = "job name"
----------------------------------------------------------------------------------------
 
 To access the service give the command:
+---------------------------------------
 juju expose n3phele
 
 After that Jenkins will be accessible via http://public-adress:8080/
