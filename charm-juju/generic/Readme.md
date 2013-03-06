@@ -30,6 +30,10 @@ Add the github URL of builder repository:
 
 juju set n3phele  builder= "git URL of builder"
 
+*This configuration clone the repository using the url builder passed as parameter. 
+In the folder builder, should contain the config.xml and dependencies, if have,
+as may contain a shell script to execute.
+
 
 Create a job with config.xml file in builder:
 
