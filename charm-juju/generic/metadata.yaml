@@ -1,0 +1,14 @@
+name: generic
+summary: Build projects using Jenkins
+maintainer: Ubuntu 12.10 <Ubuntu 12.10@ubuntu>
+description: |
+  This charm builds an environment of continuous integration using Jenkins to build projects.
+provides:
+  relation-name:
+    interface: interface-name
+requires:
+  relation-name:
+    interface: interface-name
+peers:
+  relation-name:
+    interface: interface-name

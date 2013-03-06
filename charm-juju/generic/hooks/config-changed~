@@ -1,0 +1,35 @@
+#!/bin/bash
+
+PLUGINS=`config-get plugins`
+JOB=`config-get job`
+BUILDER=`config-get builder`
+CONFIG=`config-get configName`
+            
+#------------------#
+# Install Plugins
+#------------------#
+if [ $PLUGINS != "" ]; then
+for plugin in $PLUGINS ; do
+	wget https://updates.jenkins-ci.org/latest/$plugin.hpi -O /var/lib/jenkins/plugins/$plugin.hpi
+done
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ restart
+sleep 50
+fi
+
+#------------------#
+# Create Job
+#------------------#
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job $JOB < /var/lib/juju/units/generic-0/charm/builder/$CONFIG
+
+
+#--------------------------------------#
+# Cloning Builder and execute script
+#--------------------------------------#
+if [ $BUILDER != "" ]; then
+git clone $BUILDER
+if [ -e builder/script ]; then 
+chmod +x builder/script
+builder/script
+fi
+fi
+

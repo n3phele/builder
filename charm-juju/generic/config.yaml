@@ -1,0 +1,14 @@
+options:
+  plugins:
+    type: string
+    default: ""
+    description: Space separated list of plugins to install
+  job:
+    type: string
+    default: ""
+    description: Name of job
+  builder:
+    type: string
+    default: ""
+    description: git repository with contains script and config.xml to create job and dependencies.
+ 
