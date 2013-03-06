@@ -25,5 +25,6 @@ sudo cp builder/Libs/org.hamcrest.core_1.1.0.v20090501071000.jar /usr/share/ant/
 #------------------#
 # Create Jobs   
 #------------------#
-java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job n3phele-core < /var/lib/juju/units/generic-0/charm/builder/config.xml
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job n3phele-core < /var/lib/juju/units/generic-0/charm/builder/configN3phele.xml
 java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job core < /var/lib/juju/units/generic-0/charm/builder/configCore.xml
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job openstack-factory < /var/lib/juju/units/generic-0/charm/builder/config.xml
