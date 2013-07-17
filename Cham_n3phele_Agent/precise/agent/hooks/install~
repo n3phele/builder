@@ -1,0 +1,5 @@
+#!/bin/bash 
+echo n3phele agent injection... set -x apt-get update; apt-get install -y openjdk-6-jre-headless wget -q -O - https://n3phele-agent.s3.amazonaws.com/n3ph-install-tgz-basic | su - -c '/bin/bash -s ubuntu ~/agent ~/sandbox https://region-a.geo-1.objects.hpcloudsvc.com:443/v1/AUTH_dc700102-734c-4a97-afc8-50530e87a171/n3phele-agent/n3phele-agent.tgz' ubuntu
+
+open-port 8887
+

@@ -1,0 +1,90 @@
+#!/bin/bash
+#------------------#
+# Install jenkins 
+#------------------#
+sudo wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install -y jenkins
+
+#------------------#
+# Install Ant
+#------------------#
+sudo apt-get install -y ant
+
+#------------------#
+# Install Git
+#------------------#
+sudo apt-get install -y git
+
+#------------------#
+# Install OpenJdk 6
+#------------------#
+sudo apt-get install -y openjdk-6-jdk
+
+#------------------#
+# Cloning Builder
+#------------------#
+git clone https://github.com/n3phele/builder.git
+
+#------------------#
+# Install Unzip 
+#------------------#
+sudo apt-get install -y unzip
+
+#---------------------------#
+# Unzip SDk to /home/ubuntu 
+#---------------------------#
+unzip builder/SDKs/appengine-java-sdk-1.7.1 -d /home/ubuntu/
+unzip builder/SDKs/appengine-java-sdk-1.7.5 -d /home/ubuntu/
+
+#---------------------------#
+# Unzip GWT to /home/ubuntu 
+#---------------------------#
+unzip builder/SDKs/gwt-2.4.0 -d /home/ubuntu/
+unzip builder/sdks/gwt-2.5.0 -d /home/ubuntu/
+
+#------------------#
+# Move libs to Ant  
+#------------------#
+sudo cp builder/Libs/junit.jar /usr/share/ant/lib/junit.jar
+sudo cp builder/Libs/servlet-api.jar /usr/share/ant/lib/servlet-api.jar
+sudo cp builder/Libs/org.hamcrest.core_1.1.0.v20090501071000.jar /usr/share/ant/lib/org.hamcrest.core_1.1.0.v20090501071000.jar
+
+#---------------------#
+# Install Jenkins CLI 
+#---------------------#
+sudo apt-get install -y wget
+wget http://$HOSTNAME:8080/jnlpJars/jenkins-cli.jar
+
+#-------------------------#
+# Install Jenkins Plugins 
+#-------------------------#
+
+wget https://updates.jenkins-ci.org/latest/ant.hpi -O /var/lib/jenkins/plugins/ant.hpi
+wget https://updates.jenkins-ci.org/latest/promoted-builds.hpi -O /var/lib/jenkins/plugins/promoted-builds.hpi
+wget https://updates.jenkins-ci.org/latest/mask-passwords.hpi -O /var/lib/jenkins/plugins/mask-passwords.hpi
+wget https://updates.jenkins-ci.org/latest/git-client.hpi -O /var/lib/jenkins/plugins/git-client.hpi
+wget https://updates.jenkins-ci.org/latest/git.hpi -O /var/lib/jenkins/plugins/git.hpi
+wget https://updates.jenkins-ci.org/latest/github.hpi -O /var/lib/jenkins/plugins/github.hpi
+wget https://updates.jenkins-ci.org/latest/github-api.hpi -O /var/lib/jenkins/plugins/github-api.hpi
+wget https://updates.jenkins-ci.org/latest/github-oauth.hpi -O /var/lib/jenkins/plugins/github-oauth.hpi
+wget https://updates.jenkins-ci.org/latest/github-sqs-plugin.hpi -O /var/lib/jenkins/plugins/github-sqs-plugin.hpi
+
+#------------------#
+# Restart Jenkins 
+#------------------#
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ restart
+sleep 50
+
+#------------------#
+# Create Job
+#------------------#
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job n3phele-core < builder/configN3phele.xml
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job core < builder/configCore.xml
+java -jar jenkins-cli.jar -s http://$HOSTNAME:8080/ create-job openstack-factory < builder/config.xml
+
+#------------------#
+# Open Port
+#------------------#
+open-port 8080
