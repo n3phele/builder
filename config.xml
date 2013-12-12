@@ -65,9 +65,7 @@
     <hudson.tasks.Ant plugin="ant@1.2">
       <targets>tests</targets>
       <buildFile>/var/lib/jenkins/workspace/factory/build.xml</buildFile>
-      <properties>email=n3phele.poadev@gmail.com
-passin=lispoadev
-PASSWORD=lispoadev</properties>
+      <properties></properties>
     </hudson.tasks.Ant>
   </builders>
   <publishers/>

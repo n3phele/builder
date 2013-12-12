@@ -69,9 +69,7 @@
       <targets>tests</targets>
       <antName>ant</antName>
       <buildFile>/var/lib/jenkins/workspace/n3phele/core-frontend/build.xml</buildFile>
-      <properties>email=n3phele.poadev@gmail.com
-passin=lispoadev
-PASSWORD=lispoadev</properties>
+      <properties></properties>
     </hudson.tasks.Ant>
   </builders>
   <publishers/>
