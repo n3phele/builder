@@ -59,8 +59,7 @@
     <hudson.plugins.android__emulator.builder.ProjectPrerequisitesInstaller plugin="android-emulator@2.10"/>
     <hudson.plugins.android__emulator.builder.UpdateProjectBuilder plugin="android-emulator@2.10"/>
     <hudson.tasks.Shell>
-      <command>ls -l $ANDROID_HOME/build-tools/19.0.0
-cd n3phele-mobile-android 
+      <command>cd n3phele-mobile-android 
 ant release</command>
     </hudson.tasks.Shell>
   </builders>
