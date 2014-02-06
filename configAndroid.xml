@@ -59,9 +59,7 @@
     <hudson.plugins.android__emulator.builder.ProjectPrerequisitesInstaller plugin="android-emulator@2.10"/>
     <hudson.plugins.android__emulator.builder.UpdateProjectBuilder plugin="android-emulator@2.10"/>
     <hudson.tasks.Shell>
-		<command>
-unzip -u /home/ubuntu/sandbox/android.zip cp /home/ubuntu/sandbox/key /var/lib/jenkins/jobs/n3phele-android/workspace/n3phele-mobile-android/ cp /home/ubuntu/sandbox/ant.properties /var/lib/jenkins/jobs/n3phele-android/workspace/n3phele-mobile-android/ cd n3phele-mobile-android ant release
-		</command>
+		<command>cd n3phele-mobile-android ; unzip -u /home/ubuntu/sandbox/android.zip ; ant release</command>
     </hudson.tasks.Shell>
 	<hudson.tasks.Shell>
 		<command>pwd APKFILE=$(find . -type f -name "MainActivity-release.apk") for item in $APKFILE[*] do echo $APKFILE done curl http://testflightapp.com/api/builds.json -F file=@$APKFILE -F api_token='25944ccc487733a9132a41ae4bef6bf5_NDQ4NTU0MjAxMi0wNS0xOSAxNTozNTowMS4wMjIzNjA' -F team_token='9094db83d76e051bf49744b7f29d1e92_MzMwMjc1MjAxNC0wMS0yNyAxMzoxMjoyOC40MjE2NTc' -F notes='Latest n3phele_mobile' -F notify=True -F distribution_lists='n3phele_mobile'
